@@ -1,39 +1,71 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>나의 웹사이트</title>
+    <title>버튼 기능 테스트</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f2f5;
+            background-color: #f8f9fa;
         }
-        .container {
-            text-align: center;
-            padding: 2rem;
+        .card {
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            text-align: center;
         }
-        h1 {
-            color: #1a73e8;
+        h1 { color: #333; }
+        #message { color: #666; margin-bottom: 20px; }
+        
+        /* 버튼 스타일 */
+        .btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-        p {
-            color: #5f6368;
+        .btn:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>반갑습니다! 👋</h1>
-        <p>성공적으로 index.html 파일이 생성되었습니다.</p>
-        <p>이제 이곳에 당신의 멋진 아이디어를 채워보세요.</p>
+
+    <div class="card">
+        <h1 id="title">안녕하세요!</h1>
+        <p id="message">아래 버튼을 눌러보세요.</p>
+        
+        <!-- 클릭 시 changeText() 함수 실행 -->
+        <button class="btn" onclick="changeText()">클릭하기</button>
     </div>
+
+    <script>
+        // 버튼을 눌렀을 때 실행될 기능
+        function changeText() {
+            const title = document.getElementById('title');
+            const message = document.getElementById('message');
+
+            // 텍스트 내용 변경
+            title.innerText = "버튼 클릭 완료!";
+            message.innerText = "JavaScript가 성공적으로 작동했습니다. 🎉";
+            
+            // 알림창 띄우기
+            alert("버튼을 누르셨군요!");
+        }
+    </script>
+
 </body>
 </html>
