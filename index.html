@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가짜 뉴스 자가진단</title>
+    <style>
+        :root {
+            --primary: #4A90E2;
+            --danger: #E53E3E;
+            --warning: #DD6B20;
+            --success: #38A169;
+            --bg: #F7FAFC;
+        }
+
+        body { font-family: 'Pretendard', sans-serif; background: var(--bg); padding: 20px; color: #2D3748; }
+        .container { max-width: 700px; margin: 0 auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+       
+        header { text-align: center; margin-bottom: 30px; }
+        h1 { font-size: 28px; margin-bottom: 10px; color: #1A365D; }
+        .desc { color: #718096; font-size: 15px; }
+
+        .category { margin-top: 25px; border-top: 1px solid #E2E8F0; padding-top: 20px; }
+        .category-title { font-size: 18px; font-weight: bold; margin-bottom: 15px; color: var(--primary); display: flex; align-items: center; }
+        .category-title span { background: var(--primary); color: white; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; justify-content: center; align-items: center; font-size: 12px; margin-right: 10px; }
+
+        .check-item { display: flex; align-items: flex-start; padding: 12px; border-radius: 10px; transition: 0.2s; cursor: pointer; margin-bottom: 5px; }
+        .check-item:hover { background: #EDF2F7; }
+        .check-item input { margin-top: 5px; margin-right: 15px; transform: scale(1.2); }
+        .check-item span { font-size: 15px; line-height: 1.5; }
+
+        button { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 30px; transition: 0.3s; }
+        button:hover { background: #357ABD; transform: translateY(-2px); }
+
+        #result-area { display: none; margin-top: 30px; padding: 25px; border-radius: 15px; text-align: center; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+       
+        .result-score { font-size: 40px; font-weight: 800; margin-bottom: 10px; }
+        .result-msg { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+        .result-advice { font-size: 14px; line-height: 1.6; color: #4A5568; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🧐 가짜 뉴스 자가진단</h1>
+        <p class="desc">10가지 문항을 통해 이 정보가 '가짜'인지 '팩트'인지 판별합니다.</p>
+    </header>
+
+    <!-- 카테고리 1: 출처 및 작성자 -->
+    <div class="category">
+        <div class="category-title"><span>1</span> 출처 신뢰성</div>
+        <label class="check-item">
+            <input type="checkbox" class="fact-check" data-weight="3">
+            <span>언론사명, 기자 이름, 혹은 공식 기관의 로고가 명확히 명시되어 있지 않다.</span>
+        </label>
+        <label class="check-item">
+            <input type="checkbox" class="fact-check" data-weight="2">
+            <span>사이트 주소(URL)가 익숙한 형태가 아니거나(예: .xyz, .top) 이상한 오타가 섞여 있다.</span>
+        </label>
+    </div>
+
+    <!-- 카테고리 2: 내용 및 근거 -->
+    <div class="category">
+        <div class="category-title"><span>2</span> 내용의 객관성</div>
+        <label class="check-item">
+            <input type="checkbox" class="fact-check" data-weight="3">
+            <span>주장의 근거가 되는 통계 자료나 문서 원본을 직접 확인할 수 없다.</span>
+        </label>
+        <label class="check-item">
+            <input type="checkbox" class="fact-check" data-weight="2">
+            <span>이미지나 영상이 조작된 흔적이 보이거나, 과거의 다른 사건 사진을 재활용한 것 같다.</span>
+        </label>
+        <label class="check-item">
+            <input type="checkbox" class="fact-check" data-weight="2">
+            <span>전문가의 견해라고 하지만, 그 전문가가 실존 인물인지 불분명하다.</span>
+        </label>
+    </div>
+
+    <!-- 카테고리 3: 표현의 자극성 -->
+    <div class="category">
+        <div class="category-title"><span>3</span> 표현 및 의도</div>
+        <label class="check-item">
+            <input type="checkbox" class="fact-check" data-weight="1">
+            <span>제목에 '충격', '경악', '속보', '무조건 클릭' 등의 자극적인 단어가 도배되어 있다.</span>
+        </label>
+        <label class="check-item">
+            <input type="checkbox" class="fact-check" data-weight="1">
+            <span>맞춤법이 심하게 틀리거나 문맥이 어색하여 번역기를 돌린 듯한 느낌이 든다.</span>
+        </label>
+        <label class="check-item">
+            <input type="checkbox" class="fact-check" data-weight="2">
+            <span>특정 집단에 대한 혐오를 조장하거나 공포심을 극대화하는 편향적인 어조다.</span>
+        </label>
+    </div>
+
+    <!-- 카테고리 4: 유포 정황 -->
+    <div class="category">
+        <div class="category-title"><span>4</span> 유포 방식</div>
+        <label class="check-item">
+            <input type="checkbox" class="fact-check" data-weight="2">
+            <span>대형 포털 뉴스 검색 결과에는 전혀 나오지 않고 단톡방, 커뮤니티에서만 돌고 있다.</span>
+        </label>
+        <label class="check-item">
+            <input type="checkbox" class="fact-check" data-weight="1">
+            <span>"나중에 삭제될 수 있으니 빨리 공유하세요"라며 불필요한 긴급성을 강조한다.</span>
+        </label>
+    </div>
+
+    <button onclick="calculateScore()">검사 결과 보기</button>
+
+    <div id="result-area">
+        <div class="result-score" id="score-text">0점</div>
+        <div class="result-msg" id="msg-text">결과 메시지</div>
+        <div class="result-advice" id="advice-text">세부 조언</div>
+    </div>
+</div>
+
+<script>
+    function calculateScore() {
+        const checks = document.querySelectorAll('.fact-check');
+        const resultArea = document.getElementById('result-area');
+        let totalScore = 0;
+        let maxScore = 0;
+
+        checks.forEach(check => {
+            const weight = parseInt(check.getAttribute('data-weight'));
+            maxScore += weight;
+            if (check.checked) {
+                totalScore += weight;
+            }
+        });
+
+        // 위험도 퍼센트 계산
+        const dangerPercent = Math.round((totalScore / maxScore) * 100);
+       
+        resultArea.style.display = "block";
+        const scoreText = document.getElementById('score-text');
+        const msgText = document.getElementById('msg-text');
+        const adviceText = document.getElementById('advice-text');
+
+        scoreText.innerText = dangerPercent + "%";
+
+        if (dangerPercent < 20) {
+            resultArea.style.background = "#C6F6D5";
+            scoreText.style.color = "#22543D";
+            msgText.innerText = "✅ 신뢰 가능한 정보일 가능성이 높습니다.";
+            adviceText.innerText = "비교적 투명한 출처를 가진 정보입니다. 하지만 항상 비판적인 시각을 유지하는 것이 좋습니다.";
+        } else if (dangerPercent < 50) {
+            resultArea.style.background = "#FEEBC8";
+            scoreText.style.color = "#744210";
+            msgText.innerText = "⚠️ 주의가 필요한 정보입니다.";
+            adviceText.innerText = "정보의 출처가 다소 불분명하거나 자극적입니다. 다른 공신력 있는 언론사에서 교차 검증을 해보세요.";
+        } else {
+            resultArea.style.background = "#FED7D7";
+            scoreText.style.color = "#742A2A";
+            msgText.innerText = "🚨 허위 사실 및 선동 정보일 위험이 매우 큽니다!";
+            adviceText.innerText = "가짜 뉴스의 전형적인 특징들을 많이 보이고 있습니다. 무단으로 공유할 경우 법적 책임을 질 수 있으니 주의하세요.";
+        }
+       
+        // 결과 위치로 부드럽게 스크롤
+        resultArea.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
