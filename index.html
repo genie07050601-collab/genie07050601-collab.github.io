@@ -3,6 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Justice & Truth Center</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Pretendard:wght@300;600&display=swap');
+
+        :root {
+            --neon-blue: #00D2FF;
+            --neon-red: #FF0055;
+            --deep-dark: #0A0E17;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--deep-dark);
+            color: white;
+            font-family: 'Pretendard', sans-serif;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 배경 애니메이션 효과 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1a2a44 0%, transparent 80%);
+            z-index: -1;
+        }
+
+        header {
+            margin-top: 60px;
+            text-align: center;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--neon-blue), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+        }
+
+        .subtitle {
+            font-weight: 300;
+            color: #8A99AF;
+            letter-spacing: 2px;
+        }
+
+        /* 메인 컨텐츠 영역 */
+        .hub-container {
+            display: flex;
+            gap: 40px;
+            margin-top: 80px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* 카드 스타일 */
+        .service-card {
+            width: 320px;
+            height: 450px;
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: 0.5s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--card-color);
+            box-shadow: 0 15px 40px -10px var(--card-shadow);
+        }
+
+        /* 아이콘 영역 */
+        .icon-box {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        h2 { font-size: 24px; margin-bottom: 15px; }
+        p { color: #A0AEC0; font-size: 15px; line-height: 1.6; }
+
+        /* 이동 버튼 */
+        .nav-button {
+            display: inline-block;
+            padding: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            color: white;
+            background: var(--card-color);
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-button:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 0 15px var(--card-color);
+        }
+
+        /* 개별 카드 테마 컬러 */
+        .fake-news { --card-color: #00D2FF; --card-shadow: rgba(0, 210, 255, 0.3); }
+        .cyber-crime { --card-color: #FF0055; --card-shadow: rgba(255, 0, 85, 0.3); }
+
+        footer {
+            margin-top: auto;
+            padding-bottom: 40px;
+            color: #4A5568;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>영기와 친구들</h1>
+        <p class="subtitle">DIGITAL INTEGRITY & LEGAL ANALYSIS SYSTEM</p>
+    </header>
+
+    <main class="hub-container">
+       
+        <!-- 가짜뉴스 사이트 링크 카드 -->
+        <section class="service-card fake-news">
+            <div>
+                <div class="icon-box">🛡️</div>
+                <h2>가짜뉴스 판별기</h2>
+                <p>정보의 홍수 속에서 사실 관계를 추적하고 기사의 신뢰성을 기술적으로 분석하여 정보의 왜곡을 방지합니다.</p>
+            </div>
+            <a href="file:///C:/Users/Administrator/Desktop/%EA%B0%80%EC%A7%9C%EB%89%B4%EC%8A%A4.html" class="nav-button">시스템 가동</a>
+        </section>
+
+        <!-- 악플 자가진단 사이트 링크 카드 -->
+        <section class="service-card cyber-crime">
+            <div>
+                <div class="icon-box">⚖️</div>
+                <h2>악플 법적 리스크 진단</h2>
+                <p>작성된 텍스트의 모욕성, 특정성, 공연성을 결합 분석하여 형법 및 관련 법령 위반 여부를 사전 검증합니다.</p>
+            </div>
+            <a href="file:///C:/Users/Administrator/Desktop/%EC%95%85%ED%94%8C.html" class="nav-button">정밀 검사 실행</a>
+        </section>
+
+    </main>
+
+    <footer>
+        &copy; 2026 DIGITAL INTEGRITY OVERSIGHT BOARD. ALL RIGHTS RESERVED.
+    </footer>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>가짜 뉴스 자가진단</title>
     <style>
         :root {
@@ -164,5 +357,153 @@
     }
 </script>
 
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>악플 자가진단</title>
+    <style>
+        :root { --primary: #4A90E2; --danger: #E53E3E; --bg: #F7FAFC; }
+        body { font-family: 'Pretendard', sans-serif; background: var(--bg); padding: 20px; color: #2D3748; line-height: 1.6; }
+        .container { max-width: 750px; margin: 0 auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+       
+        .report-header { background: #F1F5F9; padding: 15px; border-radius: 10px; font-size: 14px; margin-bottom: 25px; border-left: 5px solid #64748B; }
+        .category { margin-top: 25px; border: 1px solid #E2E8F0; padding: 20px; border-radius: 12px; }
+        .category-title { font-size: 17px; font-weight: bold; margin-bottom: 15px; color: var(--primary); border-bottom: 2px solid #EBF4FF; padding-bottom: 8px; }
+
+        .check-item { display: flex; align-items: flex-start; padding: 8px; cursor: pointer; }
+        .check-item input { margin-top: 5px; margin-right: 12px; }
+       
+        .auto-detected { background: #FFF5F5; border-radius: 8px; font-weight: bold; }
+
+        button { width: 100%; padding: 18px; background: #2D3748; color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 30px; }
+       
+        #result-area { display: none; margin-top: 30px; padding: 25px; border-radius: 15px; text-align: left; }
+        .status-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 14px; font-weight: bold; margin-bottom: 10px; }
+        .danger-badge { background: #FED7D7; color: #822727; }
+        .safe-badge { background: #C6F6D5; color: #22543D; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1 style="text-align:center;">⚖️ 악플 자가진단</h1>
+        <div class="report-header">
+            <b>실제 서비스 간에는 더 많은 단어를 포함하는 어휘사전을 추가해야합니다.</b>        </div>
+    </header>
+
+    <div style="margin-bottom:20px;">
+        <label style="font-weight:bold;">💬 예문 입력 (자동 키워드 탐지)</label>
+        <textarea id="user-text" oninput="scanText()" style="width:100%; height:80px; padding:12px; border:2px solid #CBD5E0; border-radius:8px; margin-top:10px;" placeholder="예문을 입력하면 관련 항목이 자동 체크됩니다."></textarea>
+    </div>
+
+    <!-- 1. 특정성 요건 -->
+    <div class="category" id="group-specific">
+        <div class="category-title">A. 특정성 요건 (Subject Specificity)</div>
+        <label class="check-item"><input type="checkbox" class="cond-check" id="c-spec-1"> <span>상대의 실명/사진/아이디를 직접 언급함</span></label>
+        <label class="check-item"><input type="checkbox" class="cond-check" id="c-spec-2"> <span>주변 정황상 제3자가 대상을 충분히 유추 가능함</span></label>
+    </div>
+
+    <!-- 2. 공연성 요건 -->
+    <div class="category" id="group-public">
+        <div class="category-title">B. 공연성 요건 (Publicity)</div>
+        <label class="check-item"><input type="checkbox" class="cond-check" id="c-pub-1"> <span>불특정 다수가 볼 수 있는 공개 게시판/댓글창임</span></label>
+        <label class="check-item"><input type="checkbox" class="cond-check" id="c-pub-2"> <span>3인 이상이 참여 중인 단체 채팅방임</span></label>
+    </div>
+
+    <!-- 3. 모욕성/비방성 요건 -->
+    <div class="category" id="group-insult">
+        <div class="category-title">C. 모욕성 및 비방성 (Insult/Defamation)</div>
+        <label class="check-item" id="row-insult"><input type="checkbox" class="cond-check" id="c-ins-1"> <span>인격 비하적 표현(무식, 한심 등)이 포함됨</span></label>
+        <label class="check-item" id="row-fact"><input type="checkbox" class="cond-check" id="c-ins-2"> <span>비방 목적으로 사실 혹은 허위 사실을 적시함</span></label>
+    </div>
+
+    <!-- 4. 통매음 특수 요건 -->
+    <div class="category" id="group-tong">
+        <div class="category-title">D. 성적 목적 및 수치심 (통매음 특수)</div>
+        <label class="check-item" id="row-sexual"><input type="checkbox" class="cond-check" id="c-tong-1"> <span>성적 비하, 신체 부위 언급 등 음란성 표현 포함</span></label>
+        <label class="check-item"><input type="checkbox" class="cond-check" id="c-tong-2"> <span>성적 수치심을 줄 의도가 명확함</span></label>
+    </div>
+
+    <button onclick="checkLegalLogic()">법적 성립 요건 검증</button>
+
+    <div id="result-area">
+        <div id="status-box"></div>
+        <h2 id="result-title" style="margin:5px 0;"></h2>
+        <p id="result-desc"></p>
+    </div>
+</div>
+
+<script>
+    const keywords = {
+        insult: ['무식', '한심', '수준', '멍청', '무능'],
+        fact: ['폭로', '사실은', '전과', '불륜', '찌라시'],
+        sexual: ['성괴', '걸레', '몸매', '조건', '박고']
+    };
+
+    function scanText() {
+        const text = document.getElementById('user-text').value;
+        const mapping = [
+            { key: 'insult', check: 'c-ins-1', row: 'row-insult' },
+            { key: 'fact', check: 'c-ins-2', row: 'row-fact' },
+            { key: 'sexual', check: 'c-tong-1', row: 'row-sexual' }
+        ];
+        mapping.forEach(m => {
+            const match = keywords[m.key].some(w => text.includes(w));
+            document.getElementById(m.check).checked = match;
+            document.getElementById(m.row).className = match ? 'check-item auto-detected' : 'check-item';
+        });
+    }
+
+    function checkLegalLogic() {
+        // 요건별 체크 여부 확인
+        const isSpecific = document.getElementById('c-spec-1').checked || document.getElementById('c-spec-2').checked;
+        const isPublic = document.getElementById('c-pub-1').checked || document.getElementById('c-pub-2').checked;
+        const isInsult = document.getElementById('c-ins-1').checked;
+        const isDefamation = document.getElementById('c-ins-2').checked;
+        const isSexual = document.getElementById('c-tong-1').checked;
+        const isSexualIntent = document.getElementById('c-tong-2').checked;
+
+        const res = document.getElementById('result-area');
+        const sBox = document.getElementById('status-box');
+        const rTitle = document.getElementById('result-title');
+        const rDesc = document.getElementById('result-desc');
+
+        res.style.display = "block";
+        let report = "";
+
+        // 1. 모욕죄 성립 로직: 특정성 AND 공연성 AND 모욕성
+        if (isSpecific && isPublic && isInsult) {
+            sBox.innerHTML = '<span class="status-badge danger-badge">형법 제311조 위반 위험</span>';
+            rTitle.innerText = "모욕죄 성립 요건 충족";
+            report = "<b>[특정성+공연성+모욕성]</b>이 모두 확인됩니다. 대법원 판례에 따라 상대가 누구인지 특정되었고, 다수가 보는 앞에서 모욕적 언사를 했으므로 고소 시 처벌 가능성이 매우 높습니다.";
+        }
+        // 2. 명예훼손 성립 로직: 특정성 AND 공연성 AND 사실적시
+        else if (isSpecific && isPublic && isDefamation) {
+            sBox.innerHTML = '<span class="status-badge danger-badge">정통망법 제70조 위반 위험</span>';
+            rTitle.innerText = "명예훼손 성립 요건 충족";
+            report = "<b>[특정성+공연성+비방목적 사실적시]</b>가 확인됩니다. 비방을 목적으로 사실 또는 허위사실을 유포하여 타인의 명예를 훼손한 것으로 간주될 수 있습니다.";
+        }
+        // 3. 통매음 성립 로직: 성적표현 AND 성적목적 (특정성/공연성 불요)
+        else if (isSexual && isSexualIntent) {
+            sBox.innerHTML = '<span class="status-badge danger-badge">성폭력처벌법 제13조 위반 위험</span>';
+            rTitle.innerText = "통매음 성립 요건 충족";
+            report = "<b>[성적표현+성적목적]</b>이 확인됩니다. 통매음은 특정성과 공연성이 없어도(1:1 대화 포함) 성립하는 특수 범죄입니다. 성적 수치심을 유발한 행위로 판단될 수 있습니다.";
+        }
+        // 4. 요건 미비 (단순 체크만 많을 때)
+        else {
+            sBox.innerHTML = '<span class="status-badge safe-badge">요건 불충족</span>';
+            rTitle.innerText = "범죄 성립 요건 미비";
+            report = "항목이 체크되었으나, 법적 처벌을 위한 <b>필수 결합 요건</b>(예: 모욕죄의 경우 특정성+공연성+모욕성의 동시 충족)이 완성되지 않았습니다. 다만, 민사상 책임이나 플랫폼 제재는 발생할 수 있습니다.";
+        }
+
+        rDesc.innerHTML = report;
+        res.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
 </body>
 </html>
